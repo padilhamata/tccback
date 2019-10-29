@@ -22,12 +22,12 @@ public class ProdutoResource {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
-
+	@CrossOrigin
 	@GetMapping("/produtos")
 	public List<Produto> listaProdutos() {
 		return produtoRepository.findAll();
 	}
-
+	@CrossOrigin
 	@GetMapping("/produtos/{id}")
 	public Produto listaProdutosUnico(@PathVariable(value = "id") long id) {
 		return produtoRepository.findById(id);
@@ -38,12 +38,12 @@ public class ProdutoResource {
 	public Produto salvaProduto(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);
 	}
-
+	@CrossOrigin
 	@DeleteMapping("/produto")
 	public void deletaProduto(@RequestBody Produto produto) {
 		produtoRepository.delete(produto);
 	}
-
+	@CrossOrigin
 	@PutMapping("/produto")
 	public Produto atualizaProduto(@RequestBody Produto produto) {
 		System.out.println(produto);
