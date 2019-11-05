@@ -16,35 +16,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pizza.backpizza.models.Produto;
 import com.pizza.backpizza.repository.ProdutoRepository;
 
+@CrossOrigin
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/produtos")
 public class ProdutoResource {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
-	@CrossOrigin
-	@GetMapping("/produtos")
+	
+	@GetMapping
 	public List<Produto> listaProdutos() {
 		return produtoRepository.findAll();
 	}
-	@CrossOrigin
-	@GetMapping("/produtos/{id}")
+
+	@GetMapping("/{id}")
 	public Produto listaProdutosUnico(@PathVariable(value = "id") long id) {
 		return produtoRepository.findById(id);
 	}
 
-	@CrossOrigin
-	@PostMapping("/produto")
+
+	@PostMapping
 	public Produto salvaProduto(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);
 	}
-	@CrossOrigin
-	@DeleteMapping("/produto")
-	public void deletaProduto(@RequestBody Produto produto) {
-		produtoRepository.delete(produto);
+	
+	@DeleteMapping("/{id}")
+	public void deletaProduto(@PathVariable(value = "id") long id) {
+		produtoRepository.delete(produtoRepository.findById(id));
 	}
-	@CrossOrigin
-	@PutMapping("/produto")
+	
+	@PutMapping
 	public Produto atualizaProduto(@RequestBody Produto produto) {
 		System.out.println(produto);
 		return produtoRepository.save(produto);
