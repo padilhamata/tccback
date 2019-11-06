@@ -34,7 +34,7 @@ public class ProdutoResource {
 		return produtoRepository.findById(id);
 	}
 
-
+	@CrossOrigin
 	@PostMapping
 	public Produto salvaProduto(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);
@@ -47,7 +47,6 @@ public class ProdutoResource {
 	
 	@PutMapping
 	public Produto atualizaProduto(@RequestBody Produto produto) {
-		System.out.println(produto);
 		return produtoRepository.save(produto);
 	}
 }
