@@ -34,7 +34,6 @@ public class ProdutoResource {
 		return produtoRepository.findById(id);
 	}
 
-	@CrossOrigin
 	@PostMapping
 	public Produto salvaProduto(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);
@@ -42,7 +41,7 @@ public class ProdutoResource {
 	
 	@DeleteMapping("/{id}")
 	public void deletaProduto(@PathVariable(value = "id") long id) {
-		produtoRepository.delete(produtoRepository.findById(id));
+		produtoRepository.deleteById(id);
 	}
 	
 	@PutMapping
