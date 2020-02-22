@@ -1,24 +1,15 @@
 package com.pizza.backpizza.resources;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.pizza.backpizza.models.Produto;
 import com.pizza.backpizza.repository.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/api/produtos")
+@RequestMapping(value = "api/produtos")
 public class ProdutoResource {
 
 	@Autowired
@@ -26,6 +17,7 @@ public class ProdutoResource {
 	
 	@GetMapping
 	public List<Produto> listaProdutos() {
+		System.out.println("estou listando");
 		return produtoRepository.findAll();
 	}
 
@@ -36,11 +28,13 @@ public class ProdutoResource {
 
 	@PostMapping
 	public Produto salvaProduto(@RequestBody Produto produto) {
+		System.out.println("estou salvando o produto");
 		return produtoRepository.save(produto);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deletaProduto(@PathVariable(value = "id") long id) {
+		System.out.println("Estou deletnado com id"+id);
 		produtoRepository.deleteById(id);
 	}
 	
